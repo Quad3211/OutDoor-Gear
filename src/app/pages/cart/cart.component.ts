@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Title, Meta } from '@angular/platform-browser';
 import { CartService } from '../../services/cart.service';
 import { CartItem } from '../../models/product.model';
+import { AuthService } from '../../services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-cart',
@@ -18,6 +20,8 @@ export class CartComponent implements OnInit {
     private title: Title,
     private meta: Meta,
     public cartService: CartService,
+    private authService: AuthService,
+    private router: Router,
   ) {}
 
   ngOnInit(): void {
@@ -58,6 +62,11 @@ export class CartComponent implements OnInit {
   }
 
   placeOrder(): void {
+    if (!this.authService.isAuthenticated()) {
+      this.router.navigate(['/login'], { queryParams: { returnUrl: '/cart' } });
+      return;
+    }
+
     this.cartService.clearCart();
     this.orderPlaced = true;
   }

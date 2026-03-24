@@ -80,6 +80,37 @@
             >Privacy</a
           >
         </li>
+        <ng-container *ngIf="!(currentUser$ | async)">
+          <li>
+            <a
+              routerLink="/login"
+              routerLinkActive="active"
+              (click)="closeMobileMenu()"
+              >Login</a
+            >
+          </li>
+          <li>
+            <a
+              routerLink="/register"
+              routerLinkActive="active"
+              (click)="closeMobileMenu()"
+              >Register</a
+            >
+          </li>
+        </ng-container>
+        <ng-container *ngIf="currentUser$ | async as user">
+          <li>
+            <span
+              class="nav-icon-link"
+              style="color: var(--color-text-muted); padding: 8px 16px"
+            >
+              Hi, {{ user.firstName }}!
+            </span>
+          </li>
+          <li>
+            <a href="javascript:void(0)" (click)="logout()">Logout</a>
+          </li>
+        </ng-container>
         <li>
           <a
             routerLink="/cart"

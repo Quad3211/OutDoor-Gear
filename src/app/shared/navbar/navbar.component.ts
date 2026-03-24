@@ -7,6 +7,9 @@ import {
 } from '@angular/core';
 import { CartService } from '../../services/cart.service';
 
+import { AuthService, User } from '../../services/auth.service';
+import { Observable } from 'rxjs';
+
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
@@ -16,11 +19,17 @@ export class NavbarComponent implements OnInit {
   isMobileMenuOpen = false;
   cartCount = 0;
   wishlistCount = 0;
+  currentUser$: Observable<User | null>;
 
   @ViewChild('menuBtn') menuBtn!: ElementRef<HTMLButtonElement>;
   @ViewChild('firstLink') firstLink!: ElementRef<HTMLAnchorElement>;
 
-  constructor(private cartService: CartService) {}
+  constructor(
+    private cartService: CartService,
+    private authService: AuthService,
+  ) {
+    this.currentUser$ = this.authService.currentUser$;
+  }
 
   ngOnInit(): void {
     this.cartService.cart$.subscribe(() => {
@@ -53,5 +62,10 @@ export class NavbarComponent implements OnInit {
       this.isMobileMenuOpen = false;
       this.menuBtn.nativeElement.focus();
     }
+  }
+
+  logout(): void {
+    this.authService.logout();
+    this.closeMobileMenu();
   }
 }

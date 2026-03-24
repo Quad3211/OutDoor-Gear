@@ -6,6 +6,9 @@ import { CartComponent } from './pages/cart/cart.component';
 import { ContactComponent } from './pages/contact/contact.component';
 import { BlogComponent } from './pages/blog/blog.component';
 import { PrivacyComponent } from './pages/privacy/privacy.component';
+import { LoginComponent } from './pages/login/login.component';
+import { RegisterComponent } from './pages/register/register.component';
+import { AuthGuard } from './services/auth.guard';
 
 const routes: Routes = [
   { path: '', component: HomeComponent, title: 'Island Adventure Gear — Home' },
@@ -18,11 +21,23 @@ const routes: Routes = [
     path: 'cart',
     component: CartComponent,
     title: 'Cart — Island Adventure Gear',
+    canActivate: [AuthGuard],
   },
   {
     path: 'wishlist',
     component: CartComponent,
     title: 'Wishlist — Island Adventure Gear',
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'login',
+    component: LoginComponent,
+    title: 'Login — Island Adventure Gear',
+  },
+  {
+    path: 'register',
+    component: RegisterComponent,
+    title: 'Register — Island Adventure Gear',
   },
   {
     path: 'contact',
