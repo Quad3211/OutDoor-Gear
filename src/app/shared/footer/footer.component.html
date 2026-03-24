@@ -1,0 +1,78 @@
+<footer class="site-footer" role="contentinfo">
+  <div class="footer-container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <h2 class="footer-logo">⛰️ Island Adventure Gear</h2>
+        <p>
+          Jamaica's premier outdoor equipment store. Trusted by hikers, campers,
+          and adventure lovers since 2018.
+        </p>
+        <address>
+          <p>📍 45 Half Way Tree Road, Kingston, Jamaica</p>
+          <p>📞 <a href="tel:+18765551234">(876) 555-1234</a></p>
+          <p>
+            ✉️
+            <a href="mailto:info@islandadventuregear.jm"
+              >info@islandadventuregear.jm</a
+            >
+          </p>
+        </address>
+      </div>
+
+      <nav aria-label="Footer navigation — Explore">
+        <h3>Explore</h3>
+        <ul>
+          <li><a routerLink="/">Home</a></li>
+          <li><a routerLink="/shop">Shop</a></li>
+          <li><a routerLink="/blog">Blog & News</a></li>
+          <li><a routerLink="/contact">Contact Us</a></li>
+        </ul>
+      </nav>
+
+      <nav aria-label="Footer navigation — Categories">
+        <h3>Categories</h3>
+        <ul>
+          <li>
+            <a routerLink="/shop" [queryParams]="{ category: 'hiking' }"
+              >Hiking</a
+            >
+          </li>
+          <li>
+            <a routerLink="/shop" [queryParams]="{ category: 'camping' }"
+              >Camping</a
+            >
+          </li>
+          <li>
+            <a routerLink="/shop" [queryParams]="{ category: 'climbing' }"
+              >Climbing</a
+            >
+          </li>
+          <li><a routerLink="/cart">Cart / Wishlist</a></li>
+        </ul>
+      </nav>
+
+      <nav aria-label="Footer navigation — Legal">
+        <h3>Legal</h3>
+        <ul>
+          <li><a routerLink="/privacy">Privacy Policy</a></li>
+          <li><a routerLink="/privacy" fragment="cookies">Cookie Policy</a></li>
+          <li><a routerLink="/privacy" fragment="terms">Terms of Use</a></li>
+        </ul>
+        <div class="hours">
+          <h3>Store Hours</h3>
+          <p>Mon–Sat: 9:00 AM – 6:00 PM</p>
+          <p>Sunday: Closed</p>
+        </div>
+      </nav>
+    </div>
+
+    <div class="footer-bottom">
+      <p>© {{ currentYear }} Island Adventure Gear. All rights reserved.</p>
+      <p class="footer-legal-links">
+        <a routerLink="/privacy">Privacy Policy</a> ·
+        <a routerLink="/privacy" fragment="cookies">Cookies</a> ·
+        <a routerLink="/privacy" fragment="terms">Terms</a>
+      </p>
+    </div>
+  </div>
+</footer>

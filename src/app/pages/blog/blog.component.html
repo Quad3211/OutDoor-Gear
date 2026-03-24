@@ -1,0 +1,57 @@
+<main id="main-content" class="page-main blog-page" tabindex="-1">
+  <div class="blog-header">
+    <h1>Blog &amp; News</h1>
+    <p>
+      Outdoor tips, trail guides, gear reviews, and Jamaican adventure stories.
+    </p>
+  </div>
+
+  <div class="blog-grid">
+    <article
+      class="blog-card"
+      *ngFor="let post of posts"
+      [attr.aria-label]="post.title"
+    >
+      <a
+        [routerLink]="['/blog', post.id]"
+        class="blog-image-link"
+        tabindex="-1"
+        aria-hidden="true"
+      >
+        <img
+          [src]="post.imageUrl"
+          [alt]="post.imageAlt"
+          class="blog-image"
+          width="600"
+          height="340"
+          loading="lazy"
+        />
+      </a>
+      <div class="blog-content">
+        <div class="blog-meta">
+          <span class="blog-category">{{ post.category }}</span>
+          <time [attr.datetime]="post.date">{{
+            post.date | date: "mediumDate"
+          }}</time>
+          <span class="read-time">{{ post.readTime }} min read</span>
+        </div>
+        <h2>
+          <a [routerLink]="['/blog', post.id]" class="blog-title-link">{{
+            post.title
+          }}</a>
+        </h2>
+        <p class="blog-excerpt">{{ post.excerpt }}</p>
+        <div class="blog-footer">
+          <span class="blog-author">By {{ post.author }}</span>
+          <a
+            [routerLink]="['/blog', post.id]"
+            class="read-more"
+            [attr.aria-label]="'Read full article: ' + post.title"
+          >
+            Read Article →
+          </a>
+        </div>
+      </div>
+    </article>
+  </div>
+</main>

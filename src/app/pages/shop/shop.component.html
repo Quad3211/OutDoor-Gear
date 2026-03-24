@@ -1,0 +1,208 @@
+<main id="main-content" class="page-main shop-page" tabindex="-1">
+  <div class="shop-header">
+    <h1>Our Collection</h1>
+    <p class="shop-intro">
+      Explore quality outdoor equipment for your Jamaican adventures.
+    </p>
+
+    <div class="xml-status" *ngIf="xmlLoaded" aria-live="polite">
+      <span class="xml-badge">✅ Live from XML Feed</span>
+      <button
+        class="btn-refresh"
+        (click)="refreshFromXml()"
+        aria-label="Refresh products from XML feed"
+      >
+        🔄 Refresh Feed
+      </button>
+    </div>
+  </div>
+
+  <!-- FILTER CONTROLS -->
+  <aside class="filter-panel" aria-label="Product filters">
+    <h2 class="filter-title">Filter &amp; Search</h2>
+
+    <div class="filter-group">
+      <label for="search-input">Search products</label>
+      <input
+        id="search-input"
+        type="search"
+        [(ngModel)]="searchQuery"
+        (ngModelChange)="applyFilters()"
+        placeholder="e.g. tent, boots…"
+        class="filter-input"
+        autocomplete="off"
+        aria-describedby="results-count"
+      />
+    </div>
+
+    <div class="filter-group">
+      <label for="category-select">Activity Category</label>
+      <select
+        id="category-select"
+        [(ngModel)]="selectedCategory"
+        (ngModelChange)="applyFilters()"
+        class="filter-select"
+      >
+        <option *ngFor="let cat of categories" [value]="cat.value">
+          {{ cat.label }}
+        </option>
+      </select>
+    </div>
+
+    <div class="filter-group">
+      <label for="price-max"
+        >Max Price: ${{ priceMax.toLocaleString() }} JMD</label
+      >
+      <input
+        id="price-max"
+        type="range"
+        min="0"
+        max="20000"
+        step="500"
+        [(ngModel)]="priceMax"
+        (ngModelChange)="applyFilters()"
+        class="price-slider"
+        aria-valuemin="0"
+        [attr.aria-valuemax]="20000"
+        [attr.aria-valuenow]="priceMax"
+        [attr.aria-valuetext]="'$' + priceMax.toLocaleString() + ' JMD'"
+      />
+    </div>
+
+    <div class="filter-group">
+      <label for="sort-select">Sort by</label>
+      <select
+        id="sort-select"
+        [(ngModel)]="sortBy"
+        (ngModelChange)="applyFilters()"
+        class="filter-select"
+      >
+        <option value="default">Default</option>
+        <option value="price-asc">Price: Low to High</option>
+        <option value="price-desc">Price: High to Low</option>
+        <option value="rating">Top Rated</option>
+        <option value="name">Name A–Z</option>
+      </select>
+    </div>
+
+    <button
+      class="btn-reset"
+      (click)="resetFilters()"
+      aria-label="Reset all filters to defaults"
+    >
+      Reset Filters
+    </button>
+  </aside>
+
+  <!-- RESULTS -->
+  <div class="shop-results">
+    <!-- ARIA live region for results count -->
+    <p
+      id="results-count"
+      class="results-count"
+      aria-live="polite"
+      aria-atomic="true"
+      role="status"
+    >
+      <span *ngIf="!isLoading">
+        Showing <strong>{{ filteredProducts.length }}</strong> of
+        <strong>{{ allProducts.length }}</strong> products
+      </span>
+    </p>
+
+    <div *ngIf="isLoading" class="loading-state" aria-live="polite">
+      <div class="spinner" aria-hidden="true"></div>
+      <p>Loading products from XML feed…</p>
+    </div>
+
+    <div
+      *ngIf="!isLoading && filteredProducts.length === 0"
+      class="empty-state"
+      role="status"
+    >
+      <span aria-hidden="true">🔍</span>
+      <p>
+        No products match your filters.
+        <button class="link-btn" (click)="resetFilters()">Reset filters</button>
+      </p>
+    </div>
+
+    <div class="product-grid" *ngIf="!isLoading && filteredProducts.length > 0">
+      <article
+        class="product-card"
+        *ngFor="let product of filteredProducts"
+        [attr.aria-label]="product.name"
+      >
+        <div class="badge-wrap" *ngIf="product.badge">
+          <span class="product-badge" [class]="'badge-' + product.badgeType">{{
+            product.badge
+          }}</span>
+        </div>
+        <img
+          [src]="product.image"
+          [alt]="product.alt"
+          class="product-image"
+          width="400"
+          height="220"
+          loading="lazy"
+        />
+        <div class="product-info">
+          <div class="product-meta">
+            <span class="product-category">{{ product.category }}</span>
+            <div
+              class="product-rating"
+              [attr.aria-label]="
+                'Rated ' +
+                product.rating +
+                ' out of 5, ' +
+                product.reviews +
+                ' reviews'
+              "
+            >
+              <span class="stars" aria-hidden="true">{{
+                getStars(product.rating)
+              }}</span>
+              <span class="review-count">({{ product.reviews }})</span>
+            </div>
+          </div>
+          <h3>{{ product.name }}</h3>
+          <p class="product-desc">{{ product.description }}</p>
+          <div class="price-row">
+            <span class="price" *ngIf="!product.originalPrice">{{
+              formatPrice(product.price)
+            }}</span>
+            <span *ngIf="product.originalPrice" class="price-with-discount">
+              <span class="old-price">{{
+                formatPrice(product.originalPrice!)
+              }}</span>
+              <span class="price sale-price">{{
+                formatPrice(product.price)
+              }}</span>
+            </span>
+          </div>
+          <div class="card-actions">
+            <button
+              class="btn-cart"
+              (click)="addToCart(product)"
+              [attr.aria-label]="'Add ' + product.name + ' to cart'"
+            >
+              🛒 Add to Cart
+            </button>
+            <button
+              class="btn-wishlist"
+              (click)="toggleWishlist(product)"
+              [attr.aria-pressed]="isInWishlist(product.id)"
+              [attr.aria-label]="
+                (isInWishlist(product.id) ? 'Remove ' : 'Add ') +
+                product.name +
+                ' to wishlist'
+              "
+            >
+              {{ isInWishlist(product.id) ? "❤️" : "🤍" }}
+            </button>
+          </div>
+        </div>
+      </article>
+    </div>
+  </div>
+</main>

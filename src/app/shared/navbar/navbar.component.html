@@ -1,0 +1,114 @@
+<a class="skip-link" href="#main-content">Skip to main content</a>
+
+<header class="site-header">
+  <div class="header-container">
+    <div class="brand">
+      <a
+        routerLink="/"
+        class="brand-link"
+        aria-label="Island Adventure Gear — Home"
+      >
+        <span class="brand-icon" aria-hidden="true">⛰️</span>
+        <span class="brand-text">Island Adventure Gear</span>
+      </a>
+      <p class="tagline">Your Gateway to Jamaica's Great Outdoors</p>
+    </div>
+
+    <nav role="navigation" aria-label="Primary navigation">
+      <button
+        #menuBtn
+        class="mobile-menu-btn"
+        [attr.aria-expanded]="isMobileMenuOpen"
+        aria-controls="primary-nav"
+        aria-label="Toggle navigation menu"
+        (click)="toggleMobileMenu()"
+      >
+        <span
+          class="hamburger"
+          [class.open]="isMobileMenuOpen"
+          aria-hidden="true"
+        >
+          <span></span><span></span><span></span>
+        </span>
+      </button>
+
+      <ul
+        id="primary-nav"
+        class="nav-list"
+        [class.mobile-open]="isMobileMenuOpen"
+        role="list"
+      >
+        <li>
+          <a
+            #firstLink
+            routerLink="/"
+            routerLinkActive="active"
+            [routerLinkActiveOptions]="{ exact: true }"
+            (click)="closeMobileMenu()"
+            >Home</a
+          >
+        </li>
+        <li>
+          <a
+            routerLink="/shop"
+            routerLinkActive="active"
+            (click)="closeMobileMenu()"
+            >Shop</a
+          >
+        </li>
+        <li>
+          <a
+            routerLink="/blog"
+            routerLinkActive="active"
+            (click)="closeMobileMenu()"
+            >Blog</a
+          >
+        </li>
+        <li>
+          <a
+            routerLink="/contact"
+            routerLinkActive="active"
+            (click)="closeMobileMenu()"
+            >Contact</a
+          >
+        </li>
+        <li>
+          <a
+            routerLink="/privacy"
+            routerLinkActive="active"
+            (click)="closeMobileMenu()"
+            >Privacy</a
+          >
+        </li>
+        <li>
+          <a
+            routerLink="/cart"
+            routerLinkActive="active"
+            class="nav-icon-link"
+            (click)="closeMobileMenu()"
+            [attr.aria-label]="'Cart (' + cartCount + ' items)'"
+          >
+            <span aria-hidden="true">🛒</span>
+            <span class="badge" *ngIf="cartCount > 0" aria-hidden="true">{{
+              cartCount
+            }}</span>
+          </a>
+        </li>
+        <li>
+          <a
+            routerLink="/wishlist"
+            routerLinkActive="active"
+            class="nav-icon-link"
+            (click)="closeMobileMenu()"
+            [attr.aria-label]="'Wishlist (' + wishlistCount + ' items)'"
+          >
+            <span aria-hidden="true">❤️</span>
+            <span class="badge" *ngIf="wishlistCount > 0" aria-hidden="true">{{
+              wishlistCount
+            }}</span>
+          </a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</header>

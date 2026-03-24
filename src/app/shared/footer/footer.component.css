@@ -1,0 +1,134 @@
+.site-footer {
+  background: var(--color-primary-dark);
+  color: rgba(255, 255, 255, 0.85);
+  padding: 0;
+  margin-top: 80px;
+}
+
+.footer-container {
+  max-width: var(--container-max);
+  margin: 0 auto;
+  padding: 80px var(--container-pad) 0;
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 48px;
+  padding-bottom: 48px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.footer-logo {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  color: white;
+  margin-bottom: 16px;
+}
+
+.footer-brand p {
+  font-size: 0.95rem;
+  line-height: 1.7;
+  margin-bottom: 24px;
+  color: rgba(255, 255, 255, 0.7);
+  max-width: 320px;
+}
+
+address {
+  font-style: normal;
+}
+address p {
+  font-size: 0.9rem;
+  margin-bottom: 12px;
+  color: rgba(255, 255, 255, 0.7);
+}
+address a {
+  color: var(--color-accent);
+  text-decoration: none;
+  font-weight: 500;
+}
+address a:hover,
+address a:focus {
+  color: white;
+  text-decoration: underline;
+}
+
+.footer-grid h3 {
+  color: white;
+  font-size: 0.9rem;
+  font-weight: 600;
+  margin-bottom: 24px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.footer-grid ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.footer-grid ul li {
+  margin-bottom: 12px;
+}
+.footer-grid ul li a {
+  color: rgba(255, 255, 255, 0.7);
+  text-decoration: none;
+  font-size: 0.95rem;
+  transition: all 0.3s ease;
+  display: inline-block;
+}
+.footer-grid ul li a:hover,
+.footer-grid ul li a:focus {
+  color: var(--color-accent);
+  transform: translateX(4px);
+}
+
+.hours p {
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.7);
+  margin-bottom: 8px;
+}
+
+.footer-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 32px 0;
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.5);
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.footer-legal-links a {
+  color: rgba(255, 255, 255, 0.5);
+  text-decoration: none;
+  margin-left: 16px;
+  transition: color 0.3s ease;
+}
+.footer-legal-links a:hover,
+.footer-legal-links a:focus {
+  color: white;
+}
+
+@media (max-width: 900px) {
+  .footer-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+@media (max-width: 600px) {
+  .footer-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+  .footer-bottom {
+    flex-direction: column;
+    text-align: center;
+  }
+  .footer-legal-links {
+    margin-top: 16px;
+  }
+  .footer-legal-links a {
+    margin: 0 8px;
+  }
+}

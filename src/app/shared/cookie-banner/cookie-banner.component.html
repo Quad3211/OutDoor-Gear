@@ -1,0 +1,26 @@
+<div
+  *ngIf="showBanner"
+  class="cookie-banner"
+  role="alert"
+  aria-live="polite"
+  aria-label="Cookie consent notice"
+>
+  <div class="cookie-content">
+    <div class="cookie-text">
+      <h2 class="cookie-title">🍪 We use cookies</h2>
+      <p>
+        We use essential cookies to keep our site working, and optional
+        analytics cookies to improve your experience. No personal data is sold.
+        <a routerLink="/privacy" fragment="cookies">Read our Cookie Policy</a>.
+      </p>
+    </div>
+    <div class="cookie-actions">
+      <button class="btn-cookie-essential" (click)="acceptEssential()">
+        Essential Only
+      </button>
+      <button class="btn-cookie-accept" (click)="acceptAll()">
+        Accept All
+      </button>
+    </div>
+  </div>
+</div>

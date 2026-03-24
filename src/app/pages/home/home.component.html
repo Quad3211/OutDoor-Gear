@@ -1,0 +1,241 @@
+<main id="main-content" class="page-main" tabindex="-1">
+  <!-- HERO SECTION -->
+  <section class="hero" aria-labelledby="hero-heading">
+    <div class="hero-content">
+      <h1 id="hero-heading">
+        Explore Jamaica's<br />
+        <span class="hero-accent">Great Outdoors</span>
+      </h1>
+      <p class="hero-subtitle">
+        Premium outdoor gear for hikers, campers, and climbers. From the Blue
+        Mountains to Negril's cliffs — we've got you covered.
+      </p>
+      <div class="hero-cta">
+        <a
+          routerLink="/shop"
+          class="btn-primary"
+          aria-label="Shop all outdoor gear"
+        >
+          Shop Now
+        </a>
+        <a
+          routerLink="/shop"
+          [queryParams]="{ category: 'hiking' }"
+          class="btn-outline"
+        >
+          View Hiking Gear
+        </a>
+      </div>
+    </div>
+    <div class="hero-image-wrapper">
+      <img
+        src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=800&q=70"
+        alt="Panoramic view of the Blue Mountains in Jamaica with lush green forest"
+        class="hero-image"
+        width="800"
+        height="500"
+        fetchpriority="high"
+      />
+    </div>
+  </section>
+
+  <!-- CATEGORY CARDS -->
+  <section class="categories" aria-labelledby="categories-heading">
+    <h2 id="categories-heading">Shop by Activity</h2>
+    <div class="category-grid">
+      <a
+        routerLink="/shop"
+        [queryParams]="{ category: 'hiking' }"
+        class="category-card"
+        aria-label="Browse hiking gear"
+      >
+        <span class="category-icon" aria-hidden="true">🥾</span>
+        <h3>Hiking</h3>
+        <p>Boots, poles, packs</p>
+      </a>
+      <a
+        routerLink="/shop"
+        [queryParams]="{ category: 'camping' }"
+        class="category-card"
+        aria-label="Browse camping gear"
+      >
+        <span class="category-icon" aria-hidden="true">⛺</span>
+        <h3>Camping</h3>
+        <p>Tents, stoves, sleep bags</p>
+      </a>
+      <a
+        routerLink="/shop"
+        [queryParams]="{ category: 'climbing' }"
+        class="category-card"
+        aria-label="Browse climbing gear"
+      >
+        <span class="category-icon" aria-hidden="true">🧗</span>
+        <h3>Climbing</h3>
+        <p>Harnesses, ropes, carabiners</p>
+      </a>
+    </div>
+  </section>
+
+  <!-- FEATURED PRODUCTS (loaded from XML) -->
+  <section class="featured-products" aria-labelledby="featured-heading">
+    <div class="section-header">
+      <h2 id="featured-heading">Featured Products</h2>
+      <p class="section-subtitle">
+        Hand-picked from our XML product feed — updated regularly
+      </p>
+    </div>
+
+    <div
+      *ngIf="isLoading"
+      class="loading-state"
+      aria-live="polite"
+      aria-label="Loading products"
+    >
+      <div class="spinner" aria-hidden="true"></div>
+      <p>Loading products from XML feed…</p>
+    </div>
+
+    <div class="product-grid" *ngIf="!isLoading">
+      <article
+        class="product-card"
+        *ngFor="let product of featuredProducts"
+        [attr.aria-label]="product.name"
+      >
+        <div class="badge-wrap" *ngIf="product.badge">
+          <span class="product-badge" [class]="'badge-' + product.badgeType">{{
+            product.badge
+          }}</span>
+        </div>
+        <img
+          [src]="product.image"
+          [alt]="product.alt"
+          class="product-image"
+          width="400"
+          height="220"
+          loading="lazy"
+        />
+        <div class="product-info">
+          <h3>{{ product.name }}</h3>
+          <p class="product-desc">{{ product.description }}</p>
+          <div
+            class="product-rating"
+            [attr.aria-label]="
+              'Rating: ' +
+              product.rating +
+              ' out of 5 stars, ' +
+              product.reviews +
+              ' reviews'
+            "
+          >
+            <span class="stars" aria-hidden="true">{{
+              getStars(product.rating)
+            }}</span>
+            <span class="review-count">({{ product.reviews }})</span>
+          </div>
+          <div class="price-row">
+            <span class="price" *ngIf="!product.originalPrice"
+              >${{ product.price.toLocaleString() }} JMD</span
+            >
+            <span *ngIf="product.originalPrice">
+              <span class="old-price" aria-label="Original price"
+                >${{ product.originalPrice.toLocaleString() }} JMD</span
+              >
+              <span class="price sale-price"
+                >${{ product.price.toLocaleString() }} JMD</span
+              >
+            </span>
+          </div>
+          <div class="card-actions">
+            <a
+              [routerLink]="['/shop']"
+              class="btn-card-primary"
+              [attr.aria-label]="'View specs for ' + product.name"
+            >
+              View Specs
+            </a>
+            <button
+              class="btn-cart"
+              (click)="addToCart(product)"
+              [attr.aria-label]="'Add ' + product.name + ' to cart'"
+            >
+              Add to Cart
+            </button>
+            <button
+              class="btn-wishlist"
+              (click)="addToWishlist(product)"
+              [attr.aria-label]="
+                (isInWishlist(product.id) ? 'Remove ' : 'Add ') +
+                product.name +
+                ' to wishlist'
+              "
+              [attr.aria-pressed]="isInWishlist(product.id)"
+            >
+              {{ isInWishlist(product.id) ? "❤️" : "🤍" }}
+            </button>
+          </div>
+        </div>
+      </article>
+    </div>
+
+    <div class="view-all">
+      <a routerLink="/shop" class="btn-primary">View All Products</a>
+    </div>
+  </section>
+
+  <!-- BENEFITS -->
+  <section class="benefits" aria-labelledby="benefits-heading">
+    <h2 id="benefits-heading" class="sr-only">Why shop with us</h2>
+    <div class="benefits-grid">
+      <div class="benefit-item">
+        <span class="benefit-icon" aria-hidden="true">🚚</span>
+        <h3>Island-Wide Delivery</h3>
+        <p>Free delivery on orders over $10,000 JMD anywhere in Jamaica</p>
+      </div>
+      <div class="benefit-item">
+        <span class="benefit-icon" aria-hidden="true">✅</span>
+        <h3>Quality Guaranteed</h3>
+        <p>All products tested for Jamaican terrain and weather conditions</p>
+      </div>
+      <div class="benefit-item">
+        <span class="benefit-icon" aria-hidden="true">💬</span>
+        <h3>Expert Advice</h3>
+        <p>
+          Our team knows Jamaica's trails and can help you choose the right gear
+        </p>
+      </div>
+      <div class="benefit-item">
+        <span class="benefit-icon" aria-hidden="true">🔒</span>
+        <h3>Secure HTTPS Shopping</h3>
+        <p>All transactions encrypted with TLS. Your data stays private</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT SECTION -->
+  <section class="about" id="about" aria-labelledby="about-heading">
+    <div class="about-content">
+      <h2 id="about-heading">About Island Adventure Gear</h2>
+      <p>
+        Island Adventure Gear is Jamaica's premier outdoor equipment store. We
+        provide high-quality gear for hikers, campers, and nature enthusiasts
+        across the island. Whether you're exploring the Blue Mountains or
+        planning a beach camping trip in Negril, we have everything you need.
+      </p>
+      <p>
+        Founded in 2018 in Kingston, we started with a passion for Jamaica's
+        stunning natural landscapes. Today we serve hundreds of adventure
+        seekers each month, proud to be the local brand that knows the terrain.
+      </p>
+      <a routerLink="/contact" class="btn-outline">Get in Touch</a>
+    </div>
+    <div class="about-visual" aria-hidden="true">
+      <img
+        src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=600&q=70"
+        alt="Hikers on a mountain ridge overlooking a valley at sunset"
+        width="600"
+        height="400"
+        loading="lazy"
+      />
+    </div>
+  </section>
+</main>
