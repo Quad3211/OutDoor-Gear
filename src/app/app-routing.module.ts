@@ -5,6 +5,8 @@ import { ShopComponent } from './pages/shop/shop.component';
 import { CartComponent } from './pages/cart/cart.component';
 import { ContactComponent } from './pages/contact/contact.component';
 import { BlogComponent } from './pages/blog/blog.component';
+import { BlogPostComponent } from './pages/blog-post/blog-post.component';
+import { ProductDetailComponent } from './pages/product-detail/product-detail.component';
 import { PrivacyComponent } from './pages/privacy/privacy.component';
 import { LoginComponent } from './pages/login/login.component';
 import { RegisterComponent } from './pages/register/register.component';
@@ -16,6 +18,11 @@ const routes: Routes = [
     path: 'shop',
     component: ShopComponent,
     title: 'Shop — Island Adventure Gear',
+  },
+  {
+    path: 'product/:id',
+    component: ProductDetailComponent,
+    title: 'Product Details — Island Adventure Gear',
   },
   {
     path: 'cart',
@@ -48,6 +55,11 @@ const routes: Routes = [
     path: 'blog',
     component: BlogComponent,
     title: 'Blog — Island Adventure Gear',
+  },
+  {
+    path: 'blog/:id',
+    component: BlogPostComponent,
+    title: 'Article — Island Adventure Gear',
   },
   {
     path: 'privacy',

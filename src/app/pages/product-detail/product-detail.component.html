@@ -1,0 +1,107 @@
+<main id="main-content" class="page-main product-detail-page" tabindex="-1">
+  <div *ngIf="isLoading" class="loading-state">
+    <div class="spinner"></div>
+    <p>Loading specifications...</p>
+  </div>
+
+  <div *ngIf="!isLoading && product" class="product-container">
+    <a routerLink="/shop" class="btn-outline back-link">
+      <span aria-hidden="true">←</span> Back to Catalog
+    </a>
+
+    <div class="product-grid">
+      <div class="product-gallery">
+        <div class="badge-wrap" *ngIf="product.badge">
+          <span class="product-badge" [class]="'badge-' + product.badgeType">{{
+            product.badge
+          }}</span>
+        </div>
+        <img [src]="product.image" [alt]="product.alt" class="main-image" />
+      </div>
+
+      <div class="product-info-panel">
+        <span class="product-category">{{ product.category | titlecase }}</span>
+        <h1 class="product-title">{{ product.name }}</h1>
+
+        <div class="product-meta">
+          <div
+            class="product-rating"
+            [attr.aria-label]="'Rated ' + product.rating + ' out of 5'"
+          >
+            <span class="stars" aria-hidden="true">{{
+              getStars(product.rating)
+            }}</span>
+            <span class="review-count"
+              >({{ product.reviews }} Customer Reviews)</span
+            >
+          </div>
+          <div class="stock-status" [class.in-stock]="product.inStock">
+            {{ product.inStock ? "In Stock" : "Out of Stock" }}
+          </div>
+        </div>
+
+        <div class="product-price">
+          <span class="price-current" *ngIf="!product.originalPrice"
+            >${{ product.price.toLocaleString() }} JMD</span
+          >
+          <ng-container *ngIf="product.originalPrice">
+            <span class="price-old"
+              >${{ product.originalPrice.toLocaleString() }} JMD</span
+            >
+            <span class="price-sale"
+              >${{ product.price.toLocaleString() }} JMD</span
+            >
+          </ng-container>
+        </div>
+
+        <div class="product-description">
+          <h3>Description</h3>
+          <p>{{ product.description }}</p>
+        </div>
+
+        <div class="product-specs">
+          <h3>Specifications</h3>
+          <ul>
+            <li><strong>SKU:</strong> IAG-{{ product.id * 834 }}</li>
+            <li><strong>Material:</strong> Premium Outdoor Standard</li>
+            <li><strong>Dimensions:</strong> Standard Issue</li>
+            <li><strong>Warranty:</strong> 1 Year Limited</li>
+          </ul>
+        </div>
+
+        <div class="product-actions">
+          <button
+            class="btn-primary btn-large"
+            (click)="addToCart(product)"
+            [disabled]="!product.inStock"
+          >
+            🛒 Add to Cart
+          </button>
+          <button
+            class="btn-outline btn-large"
+            (click)="toggleWishlist(product)"
+            [class.active-wish]="isInWishlist(product.id)"
+          >
+            {{
+              isInWishlist(product.id)
+                ? "❤️ Remove from Wishlist"
+                : "🤍 Add to Wishlist"
+            }}
+          </button>
+        </div>
+
+        <div class="product-perks">
+          <div class="perk">
+            <span aria-hidden="true">🚚</span> Free Island-Wide Delivery
+          </div>
+          <div class="perk">
+            <span aria-hidden="true">↩️</span> 30-Day Returns
+          </div>
+          <div class="perk">
+            <span aria-hidden="true">🛡️</span> Satisfaction Guarantee
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>

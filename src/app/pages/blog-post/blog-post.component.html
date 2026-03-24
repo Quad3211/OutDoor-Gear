@@ -1,0 +1,42 @@
+<main id="main-content" class="page-main blog-post-page" tabindex="-1">
+  <div *ngIf="isLoading" class="loading-state">
+    <div class="spinner"></div>
+    <p>Loading article...</p>
+  </div>
+
+  <article *ngIf="!isLoading && post" class="post-article">
+    <header class="post-header">
+      <div class="post-meta">
+        <span class="category-badge">{{ post.category }}</span>
+        <time [attr.datetime]="post.date">{{
+          post.date | date: "longDate"
+        }}</time>
+        <span class="read-time">{{ post.readTime }} min read</span>
+      </div>
+
+      <h1 class="post-title">{{ post.title }}</h1>
+      <p class="post-author">
+        By <strong>{{ post.author }}</strong>
+      </p>
+    </header>
+
+    <figure class="post-hero">
+      <img [src]="post.imageUrl" [alt]="post.imageAlt" class="hero-image" />
+    </figure>
+
+    <div class="post-content" [innerHTML]="post.content"></div>
+
+    <footer class="post-footer">
+      <a routerLink="/blog" class="btn-outline back-btn">
+        <span aria-hidden="true">←</span> Back to Articles
+      </a>
+
+      <div class="share-actions">
+        <span class="share-label">Share:</span>
+        <button class="share-btn" aria-label="Share on Facebook">📘</button>
+        <button class="share-btn" aria-label="Share on Twitter">🐦</button>
+        <button class="share-btn" aria-label="Share via Email">✉️</button>
+      </div>
+    </footer>
+  </article>
+</main>
