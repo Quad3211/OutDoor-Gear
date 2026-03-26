@@ -52,11 +52,11 @@
             class="form-input"
             autocomplete="name"
             [class.input-error]="
-              contactForm.submitted && contactForm.controls['name']?.invalid
+              contactForm.submitted && contactForm.controls['name'].invalid
             "
             aria-required="true"
             [attr.aria-invalid]="
-              contactForm.submitted && contactForm.controls['name']?.invalid
+              contactForm.submitted && contactForm.controls['name'].invalid
                 ? 'true'
                 : 'false'
             "
@@ -66,7 +66,7 @@
             id="name-error"
             class="field-error"
             *ngIf="
-              contactForm.submitted && contactForm.controls['name']?.invalid
+              contactForm.submitted && contactForm.controls['name'].invalid
             "
             role="alert"
           >
@@ -88,11 +88,11 @@
             class="form-input"
             autocomplete="email"
             [class.input-error]="
-              contactForm.submitted && contactForm.controls['email']?.invalid
+              contactForm.submitted && contactForm.controls['email'].invalid
             "
             aria-required="true"
             [attr.aria-invalid]="
-              contactForm.submitted && contactForm.controls['email']?.invalid
+              contactForm.submitted && contactForm.controls['email'].invalid
                 ? 'true'
                 : 'false'
             "
@@ -102,7 +102,7 @@
             id="email-error"
             class="field-error"
             *ngIf="
-              contactForm.submitted && contactForm.controls['email']?.invalid
+              contactForm.submitted && contactForm.controls['email'].invalid
             "
             role="alert"
           >
@@ -121,7 +121,7 @@
             required
             class="form-select"
             [class.input-error]="
-              contactForm.submitted && contactForm.controls['subject']?.invalid
+              contactForm.submitted && contactForm.controls['subject'].invalid
             "
             aria-required="true"
           >
@@ -149,11 +149,11 @@
             class="form-textarea"
             placeholder="Tell us how we can help…"
             [class.input-error]="
-              contactForm.submitted && contactForm.controls['message']?.invalid
+              contactForm.submitted && contactForm.controls['message'].invalid
             "
             aria-required="true"
             [attr.aria-invalid]="
-              contactForm.submitted && contactForm.controls['message']?.invalid
+              contactForm.submitted && contactForm.controls['message'].invalid
                 ? 'true'
                 : 'false'
             "
@@ -163,7 +163,7 @@
             id="message-error"
             class="field-error"
             *ngIf="
-              contactForm.submitted && contactForm.controls['message']?.invalid
+              contactForm.submitted && contactForm.controls['message'].invalid
             "
             role="alert"
           >
