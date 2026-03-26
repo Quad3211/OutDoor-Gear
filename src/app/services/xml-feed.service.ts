@@ -8,12 +8,16 @@ import { Product } from '../models/product.model';
   providedIn: 'root',
 })
 export class XmlFeedService {
-  private xmlUrl = 'assets/products.xml';
+  private xmlUrl = '/assets/products.xml';
 
   constructor(private http: HttpClient) {}
 
-  getProducts(): Observable<Product[]> {
-    return this.http.get(this.xmlUrl, { responseType: 'text' }).pipe(
+  getProducts(forceRefresh = false): Observable<Product[]> {
+    let url = this.xmlUrl;
+    if (forceRefresh) {
+      url += `?_t=${new Date().getTime()}`;
+    }
+    return this.http.get(url, { responseType: 'text' }).pipe(
       map((xmlText) => this.parseXml(xmlText)),
       catchError((err) => {
         console.error('Failed to load XML feed:', err);

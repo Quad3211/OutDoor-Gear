@@ -1,5 +1,10 @@
 # OutDoor-Gear
 
+## 🌐 Live Demo & Repository for Invigilator
+
+- **Live Website:** [https://out-door-gear.vercel.app/](https://out-door-gear.vercel.app/)
+- **GitHub Repository:** [https://github.com/Quad3211/OutDoor-Gear](https://github.com/Quad3211/OutDoor-Gear)
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.2.13.
 
 ## Development server

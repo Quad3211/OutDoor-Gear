@@ -129,7 +129,7 @@ export class ShopComponent implements OnInit, OnDestroy {
   refreshFromXml(): void {
     this.isLoading = true;
     this.xmlLoaded = false;
-    this.xmlFeedService.getProducts().subscribe((products) => {
+    this.xmlFeedService.getProducts(true).subscribe((products) => {
       this.allProducts = products;
       this.applyFilters();
       this.xmlLoaded = true;

@@ -91,6 +91,12 @@
   margin-top: 0.5rem;
 }
 
+@media (prefers-color-scheme: dark) {
+  .auth-subtitle {
+    color: rgba(255, 255, 255, 0.7);
+  }
+}
+
 .auth-form .form-group {
   margin-bottom: 1.5rem;
 }
@@ -121,6 +127,12 @@
   font-size: 1.1rem;
   color: #6b7280;
   pointer-events: none;
+}
+
+@media (prefers-color-scheme: dark) {
+  .input-icon {
+    color: rgba(255, 255, 255, 0.5);
+  }
 }
 
 .auth-form .form-control {
@@ -188,6 +200,12 @@
   color: var(--color-text-muted);
 }
 
+@media (prefers-color-scheme: dark) {
+  .auth-footer {
+    color: rgba(255, 255, 255, 0.7);
+  }
+}
+
 .auth-link {
   color: var(--color-primary);
   font-weight: 600;
@@ -198,6 +216,15 @@
 .auth-link:hover {
   color: var(--color-accent);
   text-decoration: underline;
+}
+
+@media (prefers-color-scheme: dark) {
+  .auth-link {
+    color: var(--color-accent);
+  }
+  .auth-link:hover {
+    color: var(--color-accent-light);
+  }
 }
 
 .error-msg {

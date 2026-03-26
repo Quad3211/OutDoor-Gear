@@ -179,19 +179,3 @@
     align-items: flex-start;
   }
 }
-
-@media (prefers-color-scheme: dark) {
-  .post-content ::ng-deep h3 {
-    color: var(--color-text-light);
-  }
-  .post-footer {
-    border-top-color: rgba(255, 255, 255, 0.1);
-  }
-  .post-title {
-    color: var(--color-text-light);
-  }
-  .spinner {
-    border-color: rgba(255, 255, 255, 0.1);
-    border-top-color: var(--color-primary-light);
-  }
-}

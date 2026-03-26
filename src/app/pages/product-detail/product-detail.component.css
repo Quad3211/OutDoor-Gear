@@ -113,7 +113,7 @@
 @media (prefers-color-scheme: dark) {
   .product-category {
     background: rgba(255, 255, 255, 0.1);
-    color: var(--color-text-light);
+    color: var(--color-text);
   }
 }
 
@@ -259,27 +259,17 @@
 }
 
 @media (prefers-color-scheme: dark) {
-  .product-title,
-  .price-current {
-    color: var(--color-text-light);
-  }
   .product-price,
   .product-specs li {
     border-color: rgba(255, 255, 255, 0.1);
   }
   .product-perks {
     background: rgba(255, 255, 255, 0.05);
-    color: var(--color-text-light);
   }
-  .perk {
-    color: var(--color-text-light);
-  }
-  .product-description h3,
-  .product-specs h3,
-  .product-specs li strong {
-    color: var(--color-text-light);
+  .price-current {
+    color: var(--color-text);
   }
   .product-gallery {
-    background: var(--color-surface-dark);
+    background: var(--color-surface);
   }
 }
