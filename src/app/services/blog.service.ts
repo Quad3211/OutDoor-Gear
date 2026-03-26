@@ -30,7 +30,7 @@ export class BlogService {
       date: '2026-03-15',
       readTime: 8,
       imageUrl:
-        'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=1200&q=80',
+        'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=1200&q=80&auto=format',
       imageAlt: 'Blue Mountains Jamaica panoramic view at sunrise',
       author: 'Marcus Campbell',
     },
@@ -45,7 +45,7 @@ export class BlogService {
       date: '2026-03-08',
       readTime: 6,
       imageUrl:
-        'https://images.unsplash.com/photo-1504280390367-361c6d9f38f4?w=1200&q=80',
+        'https://images.unsplash.com/photo-1504280390367-361c6d9f38f4?w=1200&q=80&auto=format',
       imageAlt: 'Budget camping tent set up near a river in Jamaica',
       author: 'Kezia Brown',
     },
@@ -60,7 +60,7 @@ export class BlogService {
       date: '2026-02-20',
       readTime: 10,
       imageUrl:
-        'https://images.unsplash.com/photo-1522163182402-834f871fd851?w=1200&q=80',
+        'https://images.unsplash.com/photo-1522163182402-834f871fd851?w=1200&q=80&auto=format',
       imageAlt: 'Rock climber scaling a limestone cliff at sunset',
       author: 'Devon Taylor',
     },
@@ -75,7 +75,7 @@ export class BlogService {
       date: '2026-02-10',
       readTime: 7,
       imageUrl:
-        'https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=1200&q=80',
+        'https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=1200&q=80&auto=format',
       imageAlt: 'Hiker with an orange backpack on a mountain trail',
       author: 'Marcus Campbell',
     },
@@ -90,7 +90,7 @@ export class BlogService {
       date: '2026-01-28',
       readTime: 5,
       imageUrl:
-        'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1200&q=80',
+        'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1200&q=80&auto=format',
       imageAlt: 'Clean mountain landscape with no litter — Jamaica wilderness',
       author: 'Kezia Brown',
     },
@@ -105,7 +105,7 @@ export class BlogService {
       date: '2026-01-15',
       readTime: 4,
       imageUrl:
-        'https://images.unsplash.com/photo-1508746829417-e6f548d8d6ed?w=1200&q=80',
+        'https://images.unsplash.com/photo-1508746829417-e6f548d8d6ed?w=1200&q=80&auto=format',
       imageAlt: 'New gear items arranged on a wooden surface',
       author: 'Devon Taylor',
     },
